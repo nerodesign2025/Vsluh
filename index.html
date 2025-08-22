@@ -88,4 +88,82 @@
           <article class="person">
             <div class="avatar" aria-hidden="true"></div>
             <h3>Имя Фамилия</h3>
-            <p class="
+            <p class="muted">Должность / Организация</p>
+            <p>Короткое описание экспертизы.</p>
+          </article>
+        </div>
+
+        <div class="note">
+          Ссылку-источник для каждого члена жюри можно проставить в атрибут <code>data-source</code> или 
+          в виде кнопки «Подробнее». Источник: страница «Жюри». :contentReference[oaicite:4]{index=4}
+        </div>
+      </div>
+    </section>
+
+    <!-- НОМИНАНТЫ -->
+    <section id="nominees" class="section">
+      <div class="container">
+        <h2>Номинанты</h2>
+        <p>
+          Раздел с карточками номинантов. Заполним их на основе списка со страницы «Номинанты». 
+          Ниже — пример карточек и фильтр по категориям (работает на фронте). :contentReference[oaicite:5]{index=5}
+        </p>
+
+        <div class="filters">
+          <button class="chip is-active" data-filter="all">Все</button>
+          <button class="chip" data-filter="эксперты">Эксперты</button>
+          <button class="chip" data-filter="медиа">Медиа</button>
+          <button class="chip" data-filter="проекты">Проекты</button>
+        </div>
+
+        <div class="grid three" id="nominees-list">
+          <!-- Пример карточки номинанта -->
+          <article class="card nominee" data-cat="эксперты">
+            <h3>Имя Фамилия</h3>
+            <p class="muted">Категория: Эксперты</p>
+            <p>Короткое описание вклада/проекта.</p>
+            <a class="link" href="#" target="_blank" rel="noopener">Смотреть источник</a>
+          </article>
+
+          <article class="card nominee" data-cat="медиа">
+            <h3>Название медиа/проекта</h3>
+            <p class="muted">Категория: Медиа</p>
+            <p>Короткое описание инициативы.</p>
+            <a class="link" href="#" target="_blank" rel="noopener">Смотреть источник</a>
+          </article>
+
+          <article class="card nominee" data-cat="проекты">
+            <h3>Название инициативы</h3>
+            <p class="muted">Категория: Проекты</p>
+            <p>Короткое описание.</p>
+            <a class="link" href="#" target="_blank" rel="noopener">Смотреть источник</a>
+          </article>
+        </div>
+
+        <div class="note">
+          Источник: страница «Номинанты» на The Voice (некоторые материалы анонсировались в 2024–2025). :contentReference[oaicite:6]{index=6}
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="section alt">
+      <div class="container">
+        <h2>Контакты</h2>
+        <p>Почта оргкомитета: <a href="mailto:info@nerotest.uk">info@nerotest.uk</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container row">
+      <div>© <span id="year"></span> Премия «Вслух»</div>
+      <div class="muted">
+        Основано на открытых публикациях The Voice (award, jury, nominees). :contentReference[oaicite:7]{index=7}
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/main.js"></script>
+</body>
+</html>
