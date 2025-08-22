@@ -1,41 +1,433 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Vsluh — мой сайт</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Йога с ВАШЕ_ИМЯ — баланс тела и ума</title>
+  <meta name="description" content="Индивидуальные и групповые занятия йогой: мягкая практика, дыхание, медитация. Расписание, цены, запись онлайн." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <meta property="og:title" content="Йога с ВАШЕ_ИМЯ — баланс тела и ума" />
+  <meta property="og:description" content="Индивидуальные и групповые занятия йогой. Живые и онлайн уроки. Запишитесь на пробное занятие!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nerotest.uk" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop" />
+
+  <!-- Favicon (emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧘‍♀️</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== CSS RESET (compact) ===== */
+    *,*::before,*::after{box-sizing:border-box}html:focus-within{scroll-behavior:smooth}html,body{height:100%}body{margin:0;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    img,svg,video{display:block;max-width:100%}button,input,textarea,select{font:inherit}
+
+    /* ===== THEME ===== */
+    :root{
+      --bg: #070a0f;
+      --surface: #0b1220;
+      --muted: #9cb3c9;
+      --text: #e6f2ff;
+      --brandA: #06b6d4; /* cyan */
+      --brandB: #8b5cf6; /* violet */
+      --brandC: #22c55e; /* green */
+      --card: #0f172a;
+      --ring: rgba(139,92,246,.35);
+      --maxw: 1200px;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgb(2 6 23 / 40%);
+    }
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background: var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:var(--maxw);padding:0 20px;margin:0 auto}
+
+    /* ===== NAVBAR ===== */
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(7,10,15,.85), rgba(7,10,15,.6));backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav__row{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .logo__dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--brandA),var(--brandB));box-shadow:0 0 18px var(--ring)}
+    .nav__links{display:flex;gap:22px}
+    .nav__links a{opacity:.9}
+    .nav__links a:hover{opacity:1}
+    .nav__cta{display:flex;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--text);transition:transform .2s ease, border-color .2s ease, background .2s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn--primary{background:linear-gradient(90deg,var(--brandA),var(--brandB));box-shadow:0 6px 18px rgb(8 145 178 / 35%)}
+    .btn--outline{border-color:rgba(255,255,255,.15)}
+
+    /* ===== HERO ===== */
+    .hero{position:relative;overflow:hidden}
+    .hero__wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;min-height:78vh;padding:44px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);font-size:12px;color:#c7bdf9}
+    .title{font-size:clamp(32px,7vw,58px);line-height:1.05;margin:14px 0 12px}
+    .subtitle{font-size:clamp(16px,2.4vw,19px);color:var(--muted);max-width:48ch}
+    .hero__cta{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+
+    /* Floating gradient blobs */
+    .blob{position:absolute;filter:blur(50px);opacity:.55;pointer-events:none}
+    .blob--1{top:-120px;left:-120px;width:380px;height:380px;background:radial-gradient(50% 50% at 50% 50%, var(--brandB), transparent 70%);animation:float 18s ease-in-out infinite}
+    .blob--2{bottom:-160px;right:-160px;width:420px;height:420px;background:radial-gradient(50% 50% at 50% 50%, var(--brandA), transparent 70%);animation:float 22s ease-in-out infinite reverse}
+    @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,-10px)}}
+
+    /* Wave divider */
+    .wave{position:absolute;inset:auto 0 -1px 0}
+
+    /* ===== SECTIONS ===== */
+    section{padding:80px 0;border-top:1px solid rgba(255,255,255,.05)}
+    .section__head{margin-bottom:30px}
+    .kicker{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+    h2{font-size:clamp(26px,4.3vw,38px);margin:8px 0 6px}
+    .lead{color:var(--muted);max-width:70ch}
+
+    /* ===== CARDS ===== */
+    .grid{display:grid;gap:18px}
+    .grid--3{grid-template-columns:repeat(3,1fr)}
+    .grid--2{grid-template-columns:repeat(2,1fr)}
+    .card{background:linear-gradient(180deg, rgba(15,23,42,.9), rgba(15,23,42,.65));border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .card::after{content:"";position:absolute;inset:-2px;z-index:-1;border-radius:inherit;background:radial-gradient(120px 60px at 10% -10%, var(--ring), transparent 40%)}
+    .card h3{margin:6px 0 8px;font-size:20px}
+    .card p{color:var(--muted)}
+    .icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brandA),var(--brandB));display:grid;place-items:center;box-shadow:0 8px 22px rgb(8 145 178 / 30%)}
+
+    /* ===== SCHEDULE ===== */
+    .schedule{width:100%;border-collapse:separate;border-spacing:0 10px}
+    .schedule tr{background:var(--card)}
+    .schedule td{padding:14px 16px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+    .schedule tr td:first-child{border-left:1px solid rgba(255,255,255,.06);border-radius:12px 0 0 12px;color:#c7d2fe}
+    .schedule tr td:last-child{border-right:1px solid rgba(255,255,255,.06);border-radius:0 12px 12px 0}
+
+    /* ===== PRICING ===== */
+    .price{font-size:30px;font-weight:700}
+    .muted{color:var(--muted)}
+
+    /* ===== FAQ ===== */
+    details{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:16px}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:600}
+
+    /* ===== FOOTER ===== */
+    footer{padding:40px 0;color:var(--muted)}
+
+    /* ===== REVEAL ANIMATIONS ===== */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+    .reveal.delay-1{transition-delay:.08s}
+    .reveal.delay-2{transition-delay:.16s}
+    .reveal.delay-3{transition-delay:.24s}
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 950px){
+      .hero__wrap{grid-template-columns:1fr;min-height:unset;padding:28px 0 60px}
+      .grid--3{grid-template-columns:1fr}
+      .grid--2{grid-template-columns:1fr}
+      .nav__links{display:none}
+    }
+
+    /* ===== ACCESSIBILITY ===== */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important;transition:none !important}
+      .blob{display:none}
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Добро пожаловать на сайт Vsluh</h1>
-    <nav>
-      <a href="#about">Обо мне</a>
-      <a href="#projects">Проекты</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
+  <!-- ===== NAV ===== -->
+  <nav class="nav">
+    <div class="container nav__row">
+      <a href="#home" class="logo"><span class="logo__dot"></span> Йога с <span style="letter-spacing:.02em">ВАШЕ_ИМЯ</span></a>
+      <div class="nav__links">
+        <a href="#about">Обо мне</a>
+        <a href="#benefits">Польза</a>
+        <a href="#schedule">Расписание</a>
+        <a href="#pricing">Цены</a>
+        <a href="#contact">Контакты</a>
+      </div>
+      <div class="nav__cta">
+        <a class="btn btn--outline" href="#contact">Задать вопрос</a>
+        <a class="btn btn--primary" href="#contact">Записаться</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header id="home" class="hero">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+
+    <div class="container hero__wrap">
+      <div>
+        <div class="eyebrow reveal">Мягкая практика • Дыхание • Осознанность</div>
+        <h1 class="title reveal delay-1">Баланс тела и ума через йогу</h1>
+        <p class="subtitle reveal delay-2">Приглашаю на индивидуальные и групповые занятия: восстановление, гибкость, сила и внутреннее спокойствие. Подходит для начинающих и продолжающих.</p>
+        <div class="hero__cta reveal delay-3">
+          <a class="btn btn--primary" href="#schedule">Выбрать время</a>
+          <a class="btn btn--outline" href="#about">Узнать больше</a>
+        </div>
+      </div>
+
+      <!-- Hero Illustration (inline SVG for performance) -->
+      <div class="reveal delay-2">
+        <svg viewBox="0 0 600 500" role="img" aria-label="Иллюстрация йоги">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#06b6d4"/>
+              <stop offset="1" stop-color="#8b5cf6"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1">
+              <stop offset="0" stop-color="#22c55e"/>
+              <stop offset="1" stop-color="#06b6d4"/>
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <!-- mat -->
+          <ellipse cx="300" cy="430" rx="240" ry="30" fill="#0b1220" opacity="0.9" />
+          <!-- abstract rings -->
+          <circle cx="300" cy="200" r="130" fill="none" stroke="url(#g1)" stroke-width="4" opacity="0.5" />
+          <circle cx="300" cy="200" r="170" fill="none" stroke="url(#g2)" stroke-width="2" opacity="0.35" />
+          <!-- person (stylized) -->
+          <path d="M300 95a28 28 0 1 1 0 56a28 28 0 0 1 0-56z" fill="url(#g1)" filter="url(#glow)"/>
+          <path d="M300 160c-22 18-50 72-55 92c-5 18 6 34 22 39c20 6 44 6 64 0c16-5 27-21 22-39c-5-20-33-74-53-92z" fill="url(#g2)"/>
+          <path d="M210 320c30-8 70-12 90-12s60 4 90 12c20 6 26 32 10 46c-12 10-44 8-64 2c-16-5-34-18-36-18s-20 13-36 18c-20 6-52 8-64-2c-16-14-10-40 10-46z" fill="url(#g1)" opacity="0.9"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- wave divider -->
+    <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,64L80,74.7C160,85,320,107,480,106.7C640,107,800,85,960,74.7C1120,64,1280,64,1360,64L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="rgba(255,255,255,.05)"></path>
+    </svg>
   </header>
 
-  <main>
-    <section id="about">
-      <h2>Обо мне</h2>
-      <p>Здесь ты сможешь написать о себе.</p>
-    </section>
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="section__head">
+        <div class="kicker reveal">О преподавателе</div>
+        <h2 class="reveal delay-1">Привет! Я ВАШЕ_ИМЯ — инструктор по йоге</h2>
+        <p class="lead reveal delay-2">Сертифицированный преподаватель (RYT-200/500 — укажите свой сертификат). Веду практику в стиле хатха/виньяса/йога-нидра. Индивидуальный подход, безопасная техника, внимание к дыханию и осознанности.</p>
+      </div>
 
-    <section id="projects">
-      <h2>Проекты</h2>
-      <p>Здесь будет список твоих проектов.</p>
-    </section>
+      <div class="grid grid--3">
+        <div class="card reveal">
+          <div class="icon">🧘</div>
+          <h3>Индивидуальные</h3>
+          <p>Персональные занятия под ваши цели: гибкость, сила, восстановление, стресс-менеджмент.</p>
+        </div>
+        <div class="card reveal delay-1">
+          <div class="icon">🌿</div>
+          <h3>Групповые</h3>
+          <p>Дружелюбная атмосфера и мягкая прогрессия. Подходит для новичков и продолжающих.</p>
+        </div>
+        <div class="card reveal delay-2">
+          <div class="icon">🕯️</div>
+          <h3>Онлайн</h3>
+          <p>Занимайтесь из любого места. Камера по желанию. Запись занятия — по запросу.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="contacts">
-      <h2>Контакты</h2>
-      <p>Здесь можно указать email, телефон или ссылки на соцсети.</p>
-    </section>
-  </main>
+  <!-- ===== BENEFITS ===== -->
+  <section id="benefits">
+    <div class="container">
+      <div class="section__head">
+        <div class="kicker reveal">Зачем йога?</div>
+        <h2 class="reveal delay-1">Польза, которую вы почувствуете</h2>
+        <p class="lead reveal delay-2">Улучшение сна и осанки, снижение тревожности, подвижность суставов и чувство устойчивости в теле.</p>
+      </div>
+
+      <div class="grid grid--3">
+        <div class="card reveal">
+          <h3>Дыхание и фокус</h3>
+          <p>Пранаяма успокаивает нервную систему, повышая концентрацию и устойчивость к стрессу.</p>
+        </div>
+        <div class="card reveal delay-1">
+          <h3>Гибкость и сила</h3>
+          <p>Плавные виньясы укрепляют мышцы-стабилизаторы и раскрывают тело без перегрузки.</p>
+        </div>
+        <div class="card reveal delay-2">
+          <h3>Баланс и осознанность</h3>
+          <p>Работа с вниманием возвращает вас в момент «здесь и сейчас» — на коврике и вне его.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCHEDULE ===== -->
+  <section id="schedule">
+    <div class="container">
+      <div class="section__head">
+        <div class="kicker reveal">Расписание</div>
+        <h2 class="reveal delay-1">Выберите удобное время</h2>
+        <p class="lead reveal delay-2">Залы: Центр / Онлайн (GMT+0). Индивидуальные — по согласованию.</p>
+      </div>
+
+      <div class="card reveal">
+        <table class="schedule" aria-label="Расписание занятий">
+          <tbody>
+            <tr>
+              <td>Пн</td>
+              <td>18:00–19:00 • Хатха (зал)</td>
+              <td>Невысокая интенсивность, мягкая практика</td>
+              <td><a class="btn btn--outline" href="#contact">Записаться</a></td>
+            </tr>
+            <tr>
+              <td>Ср</td>
+              <td>19:30–20:30 • Виньяса (онлайн)</td>
+              <td>Связки на дыхании, доступно для начинающих</td>
+              <td><a class="btn btn--outline" href="#contact">Записаться</a></td>
+            </tr>
+            <tr>
+              <td>Сб</td>
+              <td>11:00–12:00 • Ресторативная</td>
+              <td>Миофасциальный релиз, поддерживающие позы</td>
+              <td><a class="btn btn--outline" href="#contact">Записаться</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="muted" style="margin-top:10px">* Изменяете расписание в таблице — и готово. Часовой пояс и формат — на ваш вкус.</p>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section__head">
+        <div class="kicker reveal">Цены</div>
+        <h2 class="reveal delay-1">Прозрачно и без подписок</h2>
+      </div>
+
+      <div class="grid grid--3">
+        <div class="card reveal">
+          <h3>Пробное занятие</h3>
+          <p class="muted">Для новых учеников</p>
+          <p class="price">£0</p>
+          <p>Знакомство с практикой и целями, адаптация темпа.</p>
+          <a class="btn btn--primary" href="#contact">Записаться</a>
+        </div>
+        <div class="card reveal delay-1">
+          <h3>Разовое</h3>
+          <p class="muted">Группа/онлайн</p>
+          <p class="price">£15</p>
+          <p>Оптимально, если хотите заниматься время от времени.</p>
+          <a class="btn btn--primary" href="#contact">Выбрать</a>
+        </div>
+        <div class="card reveal delay-2">
+          <h3>Индивидуальная сессия</h3>
+          <p class="muted">1 на 1</p>
+          <p class="price">£45</p>
+          <p>Персональная программа под ваши задачи и уровень.</p>
+          <a class="btn btn--primary" href="#contact">Связаться</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section__head">
+        <div class="kicker reveal">Отзывы</div>
+        <h2 class="reveal delay-1">Что говорят ученики</h2>
+      </div>
+
+      <div class="grid grid--3">
+        <div class="card reveal">
+          <p>«Спина перестала болеть уже через месяц, а сон стал глубже. Очень бережная подача материала!»</p>
+          <p class="muted">— Марина</p>
+        </div>
+        <div class="card reveal delay-1">
+          <p>«Никогда не думал, что йога может быть такой доступной. Темп идеальный для начинающих.»</p>
+          <p class="muted">— Иван</p>
+        </div>
+        <div class="card reveal delay-2">
+          <p>«Понравился баланс силы и расслабления. После занятий — ощущение ясности в голове.»</p>
+          <p class="muted">— Ольга</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="container">
+      <div class="section__head">
+        <div class="kicker reveal">Вопросы</div>
+        <h2 class="reveal delay-1">Частые вопросы</h2>
+      </div>
+
+      <details class="reveal">
+        <summary>Я новичок. Подойдёт ли мне?</summary>
+        <p class="muted">Да! Я показываю вариации поз и подсказываю, как настроить дыхание и безопасную амплитуду.</p>
+      </details>
+
+      <details class="reveal delay-1">
+        <summary>Что нужно взять на занятие?</summary>
+        <p class="muted">Удобная одежда и коврик. В зале коврики есть, но лучше свой. Вода по желанию.</p>
+      </details>
+
+      <details class="reveal delay-2">
+        <summary>Есть ли противопоказания?</summary>
+        <p class="muted">При хронических состояниях советую посоветоваться с врачом. На индивидуальной сессии адаптируем практику.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section__head">
+        <div class="kicker reveal">Связаться</div>
+        <h2 class="reveal delay-1">Запишитесь на пробное занятие</h2>
+        <p class="lead reveal delay-2">Напишите мне удобным способом. Укажите желаемый формат и время — я отвечу в течение дня.</p>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="card reveal">
+          <h3>Контакты</h3>
+          <p class="muted">E‑mail: <a href="mailto:hello@nerotest.uk">hello@nerotest.uk</a></p>
+          <p class="muted">WhatsApp: <a href="https://wa.me/00000000000" target="_blank" rel="noopener">+00 0000 000000</a></p>
+          <p class="muted">Instagram: <a href="#" target="_blank" rel="noopener">@your.yoga</a></p>
+          <p class="muted">Адрес зала: Центр города (уточняется)</p>
+        </div>
+        <div class="card reveal">
+          <h3>Быстрый запрос</h3>
+          <form action="mailto:hello@nerotest.uk" method="post" enctype="text/plain">
+            <div style="display:grid;gap:10px">
+              <input required name="Имя" placeholder="Ваше имя" style="padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0b1220;color:var(--text)">
+              <input required type="email" name="Email" placeholder="Email" style="padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0b1220;color:var(--text)">
+              <textarea name="Сообщение" placeholder="Хочу записаться на…" rows="4" style="padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0b1220;color:var(--text)"></textarea>
+              <button class="btn btn--primary" type="submit">Отправить</button>
+            </div>
+          </form>
+          <p class="muted" style="margin-top:10px">* Форма открывает ваш почтовый клиент. Для приёма заявок на сайте можно подключить внешний сервис по желанию.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <p>© 2025 Vsluh</p>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+      <p>© <span id="year"></span> Йога с ВАШЕ_ИМЯ</p>
+      <p class="muted">Сайт: <a href="https://nerotest.uk">nerotest.uk</a></p>
+    </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script>
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    },{ threshold: .12 });
+    revealEls.forEach(el=> io.observe(el));
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
