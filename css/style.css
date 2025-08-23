@@ -1,86 +1,261 @@
+/* =========================
+   Fonts (Google Fonts)
+   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* =========================
+   Design Tokens
+   ========================= */
 :root{
-  --bg:#0d0f13;
-  --card:#151922;
-  --text:#e7ebf3;
-  --muted:#99a3b3;
-  --brand:#7f8cff;
-  --brand-2:#9ae6b4;
+  /* brand */
+  --primary:#D10A5A;            /* малиново‑розовый из логотипа */
+  --primary-600:#B4094E;
+  --primary-300:#F06C98;
+
+  --text:#1E1F23;               /* основной тёмный */
+  --muted:#6E7175;              /* вторичный текст (слово “ПРЕМИЯ”) */
+  --line:#E9ECF0;               /* светлые линии/бордеры */
+  --bg:#FFFFFF;                 /* фоновый белый */
+  --bg-alt:#F7F8FA;             /* светлые блоки/карточки */
+  --accent:#C7A06A;             /* “премиальный” золотистый акцент (по желанию) */
+
+  /* elevation */
+  --shadow-1: 0 6px 16px rgba(10,15,25,.08);
+  --shadow-2: 0 10px 30px rgba(10,15,25,.12);
+
+  /* radius & layout */
+  --radius:16px;
+  --radius-lg:24px;
+  --container:1100px;
+  --gutter: clamp(16px, 2vw, 28px);
+
+  /* typography scale (fluid) */
+  --f-hero: clamp(36px, 6vw, 84px);
+  --f-h1: clamp(32px, 4.6vw, 56px);
+  --f-h2: clamp(26px, 3.2vw, 40px);
+  --f-h3: clamp(22px, 2.4vw, 28px);
+  --f-body-lg: clamp(18px, 1.4vw, 20px);
+  --f-body: 16px;
+  --f-small: 14px;
+
+  /* animation */
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --speed-fast: 160ms;
+  --speed: 320ms;
 }
 
+/* =========================
+   CSS Reset (lightweight)
+   ========================= */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-family:"Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color:var(--text);
-  background:linear-gradient(180deg,#0b0e12 0%,#0f1420 100%);
+  background:var(--bg);
+  font-size:var(--f-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,svg,video{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit;color:inherit}
+
+/* =========================
+   Containers & Sections
+   ========================= */
+.container{width:min(100%, var(--container)); margin-inline:auto; padding-inline:var(--gutter)}
+.section{padding: clamp(56px, 10vw, 120px) 0; position:relative}
+.section--alt{background:var(--bg-alt)}
+.section__head{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:40px}
+.divider{height:1px; background:var(--line); width:100%}
+
+/* =========================
+   Typography
+   ========================= */
+.hero-title,.h1,.h2,.h3{
+  font-family:"Playfair Display", ui-serif, Georgia, serif;
+  letter-spacing: -0.01em;
+}
+.hero-title{
+  font-size:var(--f-hero);
+  font-weight:800;
+  line-height:1.05;
+}
+.h1{font-size:var(--f-h1); font-weight:800; line-height:1.1}
+.h2{font-size:var(--f-h2); font-weight:700}
+.h3{font-size:var(--f-h3); font-weight:700}
+.lead{font-size:var(--f-body-lg); color:var(--muted)}
+.overline{
+  font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
 }
 
-.container{width:min(1100px,92vw);margin:0 auto}
-.row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+/* Акцентные штрихи, перекликающиеся с каллиграфией логотипа */
+.accent{
+  position:relative;
+  display:inline-block;
+}
+.accent::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:-6px; height:10px;
+  background: linear-gradient(90deg, transparent 0, var(--primary) 12%, var(--primary) 88%, transparent 100%);
+  opacity:.25; border-radius:999px;
+}
 
-.site-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(13,15,19,.7);backdrop-filter:blur(6px);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.brand{font-weight:800;letter-spacing:.3px}
-.nav a{
-  display:inline-block;padding:14px 10px;color:var(--text);text-decoration:none;opacity:.9
-}
-.nav a:hover{color:#fff}
-
-.hero{
-  padding:64px 0 56px;
-  background:
-    radial-gradient(800px 400px at 10% -10%, rgba(127,140,255,.25), transparent 50%),
-    radial-gradient(800px 400px at 90% -10%, rgba(154,230,180,.18), transparent 50%);
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-.hero h1{font-size:clamp(32px,4vw,52px);margin:0 0 12px}
-.lead{font-size:clamp(16px,1.7vw,20px);opacity:.9;max-width:70ch}
+/* =========================
+   Buttons / Links
+   ========================= */
 .btn{
-  display:inline-block;margin-top:18px;padding:12px 18px;border-radius:14px;
-  background:linear-gradient(90deg,var(--brand),var(--brand-2));
-  color:#0b0e12;text-decoration:none;font-weight:700
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:14px 22px; border-radius:999px; border:1px solid transparent;
+  font-weight:700; letter-spacing:.02em; transition: transform var(--speed) var(--ease), box-shadow var(--speed), background var(--speed), color var(--speed);
+  will-change: transform;
+}
+.btn-primary{
+  background:var(--primary); color:#fff; box-shadow:var(--shadow-1);
+}
+.btn-primary:hover{ transform:translateY(-1px); box-shadow:var(--shadow-2); background:var(--primary-600) }
+.btn-outline{
+  border-color:var(--line); background:#fff; color:var(--text)
+}
+.btn-outline:hover{ border-color:var(--text) }
+
+/* =========================
+   Cards / Grids (Номинантки, Жюри)
+   ========================= */
+.grid{
+  display:grid; gap: clamp(16px, 2.6vw, 28px);
+  grid-template-columns: repeat(12, 1fr);
+}
+.grid--3 > *{ grid-column: span 4 }
+.grid--4 > *{ grid-column: span 3 }
+@media (max-width: 960px){
+  .grid--3 > *, .grid--4 > *{ grid-column: span 6 }
+}
+@media (max-width: 600px){
+  .grid--3 > *, .grid--4 > *{ grid-column: span 12 }
 }
 
-.section{padding:64px 0}
-.section.alt{background:rgba(255,255,255,.03)}
-.section h2{margin-top:0;font-size:clamp(24px,2.8vw,34px)}
-
-.grid{display:grid;gap:16px}
-.grid.two{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.grid.three{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-
-.card,.person,.nominee{
-  background:var(--card);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:16px;padding:18px;
-  box-shadow:0 10px 26px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.02)
+.card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  overflow:hidden; box-shadow:var(--shadow-1); transition: transform var(--speed) var(--ease), box-shadow var(--speed), border-color var(--speed);
 }
-.card h3,.person h3{margin-top:6px}
-.muted{color:var(--muted)}
-
-.filters{display:flex;gap:8px;margin:12px 0 18px;flex-wrap:wrap}
-.chip{
-  border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--text);
-  padding:8px 12px;border-radius:999px;cursor:pointer
-}
-.chip.is-active,.chip:hover{
-  background:rgba(127,140,255,.15);border-color:rgba(127,140,255,.4)
+.card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(209,10,90,.25) }
+.card__media{ aspect-ratio: 4/3; object-fit:cover; width:100% }
+.card__body{ padding:20px }
+.card__title{ font-weight:800; font-size:18px; margin:0 0 6px }
+.card__meta{ font-size:14px; color:var(--muted) }
+.tag{
+  display:inline-block; padding:6px 10px; border-radius:999px;
+  background: #fff; color:var(--primary); border:1px solid rgba(209,10,90,.25);
+  font-weight:700; font-size:12px; letter-spacing:.06em; text-transform:uppercase;
 }
 
-.link{color:var(--brand-2);text-underline-offset:3px}
+/* =========================
+   Hero Section
+   ========================= */
+.hero{
+  padding: clamp(80px, 18vw, 180px) 0 clamp(40px, 8vw, 80px);
+  position:relative; overflow:hidden;
+}
+.hero .container{ position:relative; z-index:2 }
+.hero__lead{ max-width: 680px }
+.hero__cta{ margin-top:28px; display:flex; gap:12px; flex-wrap:wrap }
 
-.note{
-  margin-top:12px;font-size:14px;color:var(--muted);
-  border-left:3px solid rgba(127,140,255,.5);padding-left:12px
+/* декоративные элементы (тонкие линии, как “штрихи пера”) */
+.hero::before, .hero::after{
+  content:""; position:absolute; inset:auto -10% -10% -10%;
+  height: 38%; background: radial-gradient(60% 60% at 50% 100%, rgba(209,10,90,.10), transparent 70%);
+  pointer-events:none
+}
+.hero::after{
+  inset: -20% -20% auto -20%;
+  height: 30%; background: radial-gradient(70% 60% at 60% 0%, rgba(199,160,106,.16), transparent 70%);
 }
 
-.site-footer{
-  padding:28px 0;border-top:1px solid rgba(255,255,255,.06);
-  background:rgba(255,255,255,.02)
+/* =========================
+   Nav & Footer (минимум)
+   ========================= */
+.nav{
+  position:sticky; top:0; z-index:100;
+  backdrop-filter:saturate(180%) blur(8px);
+  background:color-mix(in srgb, #fff 82%, transparent);
+  border-bottom:1px solid var(--line);
+}
+.nav__bar{ display:flex; align-items:center; justify-content:space-between; gap:18px; height:64px }
+.nav a{ padding:10px 12px; border-radius:10px; transition: background var(--speed) }
+.nav a:hover{ background:var(--bg-alt) }
+.footer{ padding:36px 0; color:var(--muted); border-top:1px solid var(--line) }
+
+/* =========================
+   Announcement / Numbers
+   ========================= */
+.kpi{
+  display:flex; gap:24px; flex-wrap:wrap;
+}
+.kpi__item{
+  min-width:160px; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px 16px;
+}
+.kpi__num{
+  font-family:"Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(28px, 4vw, 48px); font-weight:900; line-height:1;
+  color:var(--primary);
+}
+.kpi__label{ color:var(--muted); font-size:14px }
+
+/* =========================
+   Forms (подача заявки)
+   ========================= */
+.input, .select, .textarea{
+  width:100%; border:1px solid var(--line); background:#fff; color:var(--text);
+  padding:12px 14px; border-radius:12px; outline:none;
+  transition: border-color var(--speed), box-shadow var(--speed);
+}
+.textarea{ min-height:140px; resize:vertical }
+.input:focus, .select:focus, .textarea:focus{
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--line));
+  box-shadow:0 0 0 4px rgba(209,10,90,.12)
 }
 
-@media (max-width:560px){ .nav{display:none} }
+/* =========================
+   Scroll/Reveal helpers
+   (добавь .is-visible из JS по IntersectionObserver)
+   ========================= */
+.reveal{ opacity:0; transform: translateY(14px); transition: opacity 600ms var(--ease), transform 600ms var(--ease) }
+.reveal.is-visible{ opacity:1; transform:none }
+.stagger > *{ opacity:0; transform: translateY(12px) }
+.stagger.is-visible > *{ animation: riseIn 620ms var(--ease) forwards }
+.stagger.is-visible > *:nth-child(2){ animation-delay: 80ms }
+.stagger.is-visible > *:nth-child(3){ animation-delay: 160ms }
+@keyframes riseIn{ to{ opacity:1; transform:none } }
+
+/* =========================
+   Accessibility & States
+   ========================= */
+:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(199,160,106,.35);
+  border-radius:12px;
+}
+::selection{ background: rgba(209,10,90,.22) }
+a.skip-link{
+  position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+a.skip-link:focus{ left:16px; top:16px; width:auto; height:auto; padding:10px 14px; background:#fff; border:1px solid var(--line); border-radius:10px }
+
+/* =========================
+   Utilities
+   ========================= */
+.text-center{text-align:center}
+.mt-0{margin-top:0} .mt-1{margin-top:8px} .mt-2{margin-top:16px} .mt-3{margin-top:24px} .mt-4{margin-top:32px}
+.mb-0{margin-bottom:0} .mb-1{margin-bottom:8px} .mb-2{margin-bottom:16px} .mb-3{margin-bottom:24px} .mb-4{margin-bottom:32px}
+.p-0{padding:0} .py-1{padding-block:8px} .py-2{padding-block:16px} .py-3{padding-block:24px}
+.hide-mobile{display:initial}
+@media (max-width: 640px){ .hide-mobile{display:none} }
+
+/* уважение к prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:1ms !important; animation-iteration-count:1 !important; transition-duration:1ms !important; scroll-behavior:auto !important }
+}
