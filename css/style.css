@@ -304,21 +304,13 @@ a.skip-link:focus{ left:16px; top:16px; width:auto; height:auto; padding:10px 14
 .hero-content {
   position: absolute;
   top: 50%;
-  left: 0;
-  transform: translateY(-50%);
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
+  transform: translateY(-50%);
   color: var(--text);
 }
 
-.hero-content .container {
-  width: min(90%, 1200px);
-  margin: 0 auto;
-}
-
 .hero-content .text {
-  width: 65%; /* текст на 2/3 ширины контейнера */
+  width: 65%; /* текст занимает 2/3 контейнера */
 }
 
 .hero-content .hero-tagline {
