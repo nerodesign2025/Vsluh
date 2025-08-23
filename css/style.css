@@ -332,4 +332,11 @@ a.skip-link:focus{ left:16px; top:16px; width:auto; height:auto; padding:10px 14
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+   
+.logo img {
+  height: 40px;   /* подгони высоту под шапку */
+  width: auto;    /* ширина уменьшится пропорционально */
+  display: block; /* убираем лишние отступы */
+}
+
 }
