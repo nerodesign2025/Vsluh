@@ -1,171 +1,149 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Название сайта (отображается во вкладке браузера) -->
   <title>Премия «Вслух» — официальный сайт</title>
 
-  <!-- Краткое описание для поисковиков и соцсетей -->
   <meta name="description" content="Премия «Вслух» отмечает проекты и людей, которые продвигают разговор о женском здоровье и вдохновляют перемены." />
 
-  <!-- Подключение Google Fonts (Manrope и Playfair Display) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
-  <!-- Подключение твоего CSS -->
+  <!-- Стили -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+  <!-- Хэдер -->
   <header class="site-header">
     <div class="container row">
       <div class="brand">Премия «Вслух»</div>
       <nav class="nav">
         <a href="#award">О премии</a>
+        <a href="#nominations">Номинации</a>
         <a href="#jury">Жюри</a>
         <a href="#nominees">Номинанты</a>
+        <a href="pages/winners.html">Победители прошлых лет</a>
         <a href="#contacts">Контакты</a>
       </nav>
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <h1>Премия «Вслух»</h1>
-      <p class="lead">
-        Инициатива, созданная для поддержки открытого разговора о женском здоровье и признания тех,
-        кто помогает обществу говорить об этом вслух.
-      </p>
-      <a class="btn" href="#nominees">Смотреть номинантов</a>
+      <h1 class="hero-title accent">Награждаем тех, кто говорит о женском здоровье и не боится сложных тем</h1>
+      <p class="lead">Третий год подряд премия «Вслух» отмечает просветителей в области женского здоровья.</p>
+      <div class="hero__cta">
+        <a href="#apply" class="btn btn-primary">Подать заявку</a>
+        <a href="#nominees" class="btn btn-outline">Смотреть номинантов</a>
+      </div>
     </div>
   </section>
 
-  <main>
-    <!-- О ПРЕМИИ -->
-    <section id="award" class="section">
-      <div class="container">
-        <h2>О премии</h2>
-        <p>
-          Премия «Вслух» — совместный проект медиабренда Voice и компании «Гедеон Рихтер».
-          Цель — отмечать экспертов, инициативы и медиа, которые популяризируют знания о женском здоровье,
-          помогают разрушать стигмы и продвигают культуру заботы.
-        </p>
+  <!-- О премии -->
+  <section id="award" class="section">
+    <div class="container">
+      <h2 class="h2">О премии</h2>
+      <p>
+        Осенью 2023 года фармацевтическая компания «Гедеон Рихтер» и журнал Voice запустили премию «Вслух». 
+        Уже третий год мы награждаем тех, кто умеет грамотно и бережно говорить о непростых темах, волнующих каждую женщину.
+      </p>
+    </div>
+  </section>
 
-        <div class="grid two">
-          <article class="card">
-            <h3>Миссия</h3>
-            <p>Поддерживать тех, кто качественно и бережно говорит о важном — научно, открыто и доступно.</p>
-          </article>
-          <article class="card">
-            <h3>Формат</h3>
-            <p>Ежегодная премия с несколькими категориями и специальными номинациями, публикации и церемония награждения.</p>
-          </article>
-        </div>
+  <!-- Номинации -->
+  <section id="nominations" class="section section--alt">
+    <div class="container">
+      <h2 class="h2">Номинации</h2>
+      <ul>
+        <li>Лекторий</li>
+        <li>Блог</li>
+        <li>Курс</li>
+        <li>Онлайн-проект</li>
+        <li>Группа поддержки</li>
+        <li>Книги</li>
+        <li>Текст</li>
+      </ul>
+    </div>
+  </section>
 
-        <div class="note">
-          Этот раздел — краткий пересказ официальных страниц. Пришлёшь уточнения — обновлю тексты 1:1 под формулировки.
-        </div>
+  <!-- Жюри -->
+  <section id="jury" class="section">
+    <div class="container">
+      <h2 class="h2">Жюри</h2>
+      <p>Здесь будет краткое описание команды жюри.</p>
+      <div class="grid grid--4">
+        <!-- карточка жюри -->
+        <article class="card">
+          <img src="images/jury/jury1.jpg" class="card__media" alt="Член жюри">
+          <div class="card__body">
+            <h3 class="card__title">Имя Фамилия</h3>
+            <div class="card__meta">Должность</div>
+          </div>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ЖЮРИ -->
-    <section id="jury" class="section alt">
-      <div class="container">
-        <h2>Жюри</h2>
-        <p>
-          В состав жюри входят представители индустрии, эксперты по женскому здоровью и медиакоммуникациям.
-          Ниже — карточки для списка жюри. Когда пришлёшь имена и роли из страницы «Жюри»,
-          я подставлю их в эти блоки.
-        </p>
-
-        <div class="grid three" id="jury-list">
-          <article class="person">
-            <h3>Имя Фамилия</h3>
-            <p class="muted">Должность / Организация</p>
-            <p>Короткое описание экспертизы и роли в жюри.</p>
-          </article>
-
-          <article class="person">
-            <h3>Имя Фамилия</h3>
-            <p class="muted">Должность / Организация</p>
-            <p>Короткое описание экспертизы и роли в жюри.</p>
-          </article>
-
-          <article class="person">
-            <h3>Имя Фамилия</h3>
-            <p class="muted">Должность / Организация</p>
-            <p>Короткое описание экспертизы и роли в жюри.</p>
-          </article>
-        </div>
-
-        <div class="note">
-          Сколько карточек нужно — столько и скопируй блок <code>&lt;article class="person"&gt;…</code>.
-        </div>
+  <!-- Номинанты -->
+  <section id="nominees" class="section section--alt">
+    <div class="container">
+      <h2 class="h2">Номинанты 2025</h2>
+      <div class="grid grid--3">
+        <!-- карточка номинанта -->
+        <article class="card">
+          <img src="images/nominees/lektoriy/nominee1.jpg" class="card__media" alt="Номинант">
+          <div class="card__body">
+            <h3 class="card__title">Имя Фамилия</h3>
+            <div class="card__meta">Краткое описание проекта</div>
+          </div>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- НОМИНАНТЫ -->
-    <section id="nominees" class="section">
-      <div class="container">
-        <h2>Номинанты</h2>
-        <p>
-          Секция с фильтром по категориям («Эксперты», «Медиа», «Проекты»). Заполним по странице «Номинанты».
-        </p>
+  <!-- Форма заявки -->
+  <section id="apply" class="section">
+    <div class="container">
+      <h2 class="h2">Подать заявку</h2>
+      <form>
+        <input class="input" type="text" placeholder="ФИО" required>
+        <select class="select">
+          <option>Выберите номинацию</option>
+          <option>Лекторий</option>
+          <option>Блог</option>
+          <option>Курс</option>
+          <option>Онлайн-проект</option>
+          <option>Группа поддержки</option>
+          <option>Книги</option>
+          <option>Текст</option>
+        </select>
+        <textarea class="textarea" placeholder="Расскажите о своем проекте"></textarea>
+        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+      </form>
+    </div>
+  </section>
 
-        <div class="filters">
-          <button class="chip is-active" data-filter="all">Все</button>
-          <button class="chip" data-filter="эксперты">Эксперты</button>
-          <button class="chip" data-filter="медиа">Медиа</button>
-          <button class="chip" data-filter="проекты">Проекты</button>
-        </div>
+  <!-- Контакты -->
+  <section id="contacts" class="section section--alt">
+    <div class="container">
+      <h2 class="h2">Контакты</h2>
+      <p>Если у вас есть вопросы, напишите нам на <a href="mailto:info@vsluh.ru">info@vsluh.ru</a></p>
+    </div>
+  </section>
 
-        <div class="grid three" id="nominees-list">
-          <article class="card nominee" data-cat="эксперты">
-            <h3>Имя Фамилия</h3>
-            <p class="muted">Категория: Эксперты</p>
-            <p>Короткое описание вклада/проекта номинанта.</p>
-            <a class="link" href="#" target="_blank" rel="noopener">Источник</a>
-          </article>
-
-          <article class="card nominee" data-cat="медиа">
-            <h3>Название медиа</h3>
-            <p class="muted">Категория: Медиа</p>
-            <p>Чем именно медиа помогает говорить о женском здоровье.</p>
-            <a class="link" href="#" target="_blank" rel="noopener">Источник</a>
-          </article>
-
-          <article class="card nominee" data-cat="проекты">
-            <h3>Название проекта</h3>
-            <p class="muted">Категория: Проекты</p>
-            <p>Краткое описание инициативы и её пользы.</p>
-            <a class="link" href="#" target="_blank" rel="noopener">Источник</a>
-          </article>
-        </div>
-
-        <div class="note">
-          Пришли 3 ссылки — я возьму формулировки и подставлю сюда конкретику.
-        </div>
-      </div>
-    </section>
-
-    <!-- КОНТАКТЫ -->
-    <section id="contacts" class="section alt">
-      <div class="container">
-        <h2>Контакты</h2>
-        <p>Почта оргкомитета: <a href="mailto:info@nerotest.uk">info@nerotest.uk</a></p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container row">
-      <div>© <span id="year"></span> Премия «Вслух»</div>
-      <div class="muted">Одностраничный сайт. Тексты — краткие пересказы официальных страниц.</div>
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Премия «Вслух»</p>
     </div>
   </footer>
 
-  <script src="./js/script.js"></script>
+  <!-- Скрипты -->
+  <script src="js/main.js" defer></script>
 </body>
 </html>
