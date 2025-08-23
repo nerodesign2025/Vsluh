@@ -272,3 +272,10 @@ a.skip-link:focus{ left:16px; top:16px; width:auto; height:auto; padding:10px 14
   border-bottom: 1px solid var(--line);
   box-shadow: var(--shadow-1);
 }
+.nav a.active {
+  color: var(--primary);
+}
+
+.nav a.active::after {
+  width: 100%;
+}
